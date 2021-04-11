@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id='game' oncontextmenu= "return false">
+        <canvas width="800" height="600" id='background'></canvas>
+        <canvas width="800" height="600" id='foreground'></canvas>
+        <canvas width="800" height="600" id='particles'></canvas>
+        <canvas width="800" height="600" id='interface' ></canvas>
+    </div>
+    <style>
+        #game {
+          width: 800px;
+          height: 600px;
+          position: relative;
+          border: 2px solid black;
+        }
+      
+        canvas { position: absolute; }
+        #background { z-index: 1; }
+        #foreground { z-index: 2; }
+        #particles  { z-index: 3; }
+        #interface  { z-index: 4; }
+      </style>
+    <script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
+    <script src="Game.js"></script>
+</body>
+</html>
