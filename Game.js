@@ -187,33 +187,102 @@ function drawParticles() {
     }
 }
 
+/////////////////////////////////////MainMenu////////////////////////////////////////
+function drawMainMenu() {
+    let menuColor = "rgba(0,255,0,1)"
+    ui.fillStyle = "black"
+    ui.fillRect(0,0,w,h)
+    drawMenuButton("  Играть", w/3, h/2-80, menuColor)
+    drawMenuDifficultySlider(w/2-40, h/2+20, menuColor)
+    drawRectangle(ui, 100, 100, "red", cellSize*0.25, cellSize*0.1, cellSize/4 )
+}
+
+function drawMenuButton(string, _x, _y, color) {
+    let fontSize = 40
+    let xSize = string.length*fontSize*0.74
+    let ySize = fontSize*1.2
+    
+    ui.font = fontSize + "px Verdana"
+    ui.fillStyle = color;
+    ui.fillText(string, _x + xSize*0.04, _y + ySize - ySize*0.2)
+
+    ui.beginPath()
+    ui.lineWidth = 4
+    ui.strokeStyle = color
+    ui.shadowColor = color
+    ui.moveTo(_x + xSize, _y)
+    ui.lineTo(_x, _y)
+    ui.lineTo(_x, _y + ySize)
+    ui.lineTo(_x + xSize, _y + ySize)
+    ui.closePath()
+    ui.stroke()
+} 
+
+function drawMenuDifficultySlider(_x, _y, color) {
+    let fontSize = 40
+    let ySize = fontSize
+    
+    ui.fillStyle = color;
+    ui.font = fontSize*0.7 + "px Verdana"
+    ui.fillText("Сложность: ", _x-100, _y - ySize/5 )
+    _x += 80
+    ui.font = fontSize + "px Verdana"
+    ui.fillText(" 5", _x, _y )
+
+    _y += ySize*0.1
+
+    ui.beginPath()
+    ui.lineWidth = 2
+    ui.strokeStyle = color
+    ui.shadowColor = color
+    ui.moveTo(_x, _y)
+    ui.lineTo(_x-10, _y-ySize/2)
+    ui.lineTo(_x, _y - ySize)
+    ui.moveTo(_x+fontSize*1.3, _y)
+    ui.lineTo(_x+fontSize*1.3+10, _y-ySize/2)
+    ui.lineTo(_x+fontSize*1.3, _y - ySize)
+    ui.stroke()
+}
+
+function startGame() {
+    userInGame = true
+
+    ui.clearRect(0,0,w,h)
+    field.clear()
+    field.draw()
+    snake.draw()
+    apple.findPos()
+    apple.draw()
+}
+
+/////////////////////////////////////MainFunc////////////////////////////////////////
 var snake = new Snake(field.xSize/2, field.ySize/2) 
 
 bg.shadowBlur = 10
 fg.shadowBlur = 12
 
-field.clear()
-field.draw()
-snake.draw()
-apple.findPos()
-apple.draw()
+var userInGame = false
 
-let start = Date.now(); // запомнить время начала
+drawMainMenu()
+
+let start = Date.now(); 
 let timer = setInterval(function() {
-  // сколько времени прошло с начала анимации?
-  let timePassed = Date.now() - start;
+
+ // let timePassed = Date.now() - start;
 
 //   if (timePassed >= 2000) {
 //     clearInterval(timer); // закончить анимацию через 2 секунды
 //     return;
 //   }
 
-  // отрисовать анимацию на момент timePassed, прошедший с начала анимации
-  snake.move()
+    if (userInGame)
+    {
+        snake.move()
 
-  clearForeground()
-  snake.draw()
-  apple.draw()
+        clearForeground()
+        snake.draw()
+        apple.draw()
+    }
 
 }, 500);
 
@@ -224,8 +293,13 @@ let timer2 = setInterval(function() {
 }, 20);
 
 $('body').mouseup(function(e){
-    if (e.which == 1) snake.head.dir = (snake.head.dir+1)%4
-    if (e.which == 3) snake.head.dir = (snake.head.dir+3)%4
+    if (userInGame) {
+        if (e.which == 1) snake.head.dir = (snake.head.dir+1)%4
+        if (e.which == 3) snake.head.dir = (snake.head.dir+3)%4
+    }
+    else {
+        startGame()
+    }
 });
 
 
