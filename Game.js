@@ -27,6 +27,22 @@ function startGame() {
     snake.draw()
     apple.findPos()
     apple.draw()
+
+    clearInterval(timer);
+    timer = setInterval(timeTick, 500);
+}
+
+function timeTick() {
+    if (userInGame) {
+        snake.move()
+
+        clearForeground()
+        snake.draw()
+        apple.draw()
+    }
+    else {
+        mainMenu.draw();
+    }
 }
 
 /////////////////////////////////////MainFunc////////////////////////////////////////
@@ -40,7 +56,8 @@ var userInGame = false
 mainMenu.draw()
 
 let start = Date.now(); 
-let timer = setInterval(function() {
+var sleepTime = 10;
+var timer = setInterval(function() {
 
  // let timePassed = Date.now() - start;
 
@@ -49,16 +66,9 @@ let timer = setInterval(function() {
 //     return;
 //   }
 
-    if (userInGame)
-    {
-        snake.move()
+    timeTick();
 
-        clearForeground()
-        snake.draw()
-        apple.draw()
-    }
-
-}, 500);
+}, sleepTime);
 
 let timer2 = setInterval(function() {
     drawer.drawParticles(partArr)
@@ -66,10 +76,17 @@ let timer2 = setInterval(function() {
 
 $('body').mouseup(function(e){
     if (userInGame) {
-        if (e.which == 1) snake.head.dir = (snake.head.dir+1)%4
-        if (e.which == 3) snake.head.dir = (snake.head.dir+3)%4
+        if (e.which == 1) 
+            if ((snake.head.dir+3)%4 != snake.bodyArr[0].dir)
+                snake.head.dir = (snake.head.dir+1)%4
+        if (e.which == 3) 
+            if ((snake.head.dir+1)%4 != snake.bodyArr[0].dir)
+                snake.head.dir = (snake.head.dir+3)%4
     }
     else {
-        startGame()
-    }
+        mainMenu.buttons.forEach(button => {
+            if (button.isCollision(e.pageX, e.pageY))
+                button.click();
+        });
+    };
 });

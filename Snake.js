@@ -11,12 +11,12 @@ var Snake = function(_ctx, _x, _y) {
     }
 
     snake.drawHead = () => {
-        drawRectangle(snake.ctx ,snake.head.x, snake.head.y, colorSnake, cellSize*0.25, cellSize*0.2)
+        drawer.drawRectangle(snake.ctx ,snake.head.x, snake.head.y, colorSnake, cellSize*0.25, cellSize*0.2)
     }
 
     snake.drawBody = () => {
         snake.bodyArr.forEach(point => {
-            drawRectangle(snake.ctx ,point.x, point.y, colorSnake, cellSize*0.35, cellSize*0.2)
+            drawer.drawRectangle(snake.ctx ,point.x, point.y, colorSnake, cellSize*0.35, cellSize*0.2)
         });
     }
 
