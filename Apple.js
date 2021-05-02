@@ -12,6 +12,6 @@ var apple = {}
         apple.y = _y
     }
     apple.draw = () => {
-        drawer.drawRectangle(drawer.fg, apple.x, apple.y, "red", cellSize*0.25, cellSize*0.1, cellSize/4 )
+        drawer.drawCell(drawer.fg, apple.x, apple.y, "red", cellSize*0.25, cellSize*0.1, cellSize/4 )
     }
 }

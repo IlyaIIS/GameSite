@@ -4,9 +4,9 @@ var MainMenu = function(_ctx, _color) {
     mm.color = _color;
 
     mm.buttons = [];
-    mm.buttons.push(new Button(mm.ctx, "играть", w/3, h/2-80, mm.color, true, 10, 20, startGame ))
-    mm.buttons.push(new Parameter(mm.ctx, "скорость", w/3, h/2-80 + 65, mm.color))
-    mm.buttons.push(new Parameter(mm.ctx, "сложность карты", w/3, h/2-80 + 105, mm.color))
+    mm.buttons.push(new Button(mm.ctx, "играть", w/4, h/2-80, mm.color, true, 10, 20, startGame ))
+    mm.buttons.push(new Parameter(mm.ctx, "скорость", w/4, h/2-80 + 65, mm.color))
+    mm.buttons.push(new Parameter(mm.ctx, "сложность карты", w/4, h/2-80 + 105, mm.color))
 
 
     mm.draw = () => {
@@ -17,8 +17,6 @@ var MainMenu = function(_ctx, _color) {
 
     return mm;
 }
-
-var font = "px Lucida Console";
 
 var Button = function(ctx, string, _x, _y, color, isBorder = true, xInd = 0, yInd = 0, click = () => {}) {
     let button = {};
@@ -84,11 +82,11 @@ var Parameter = function(ctx, string, _x, _y, color) {
     param.clickX = 0;
     param.clickY = 0;
 
-    param.content = 1;
-    param.buttonLeft = new Button(ctx, "<", _x, _y, color, false, 0, 0, () => {if (param.content>0) param.content--})
-    param.buttonRight = new Button(ctx, ">", _x+50, _y, color, false, 0, 0, () => {if (param.content<9)param.content++})
+    param.content = 3;
+    param.buttonLeft = new Button(ctx, "<", _x, _y, color, false, 0, 0, () => {if (param.content>1) param.content--})
+    param.buttonRight = new Button(ctx, ">", _x+50, _y, color, false, 0, 0, () => {if (param.content<5)param.content++})
     param.textBox1 = new Button(ctx, " ", _x+25, _y+3, color, false)
-    param.textBox2 = new Button(ctx, param.string, _x+100, _y, color, false)
+    param.textBox2 = new Button(ctx, param.string, _x+80, _y, color, false)
 
     param.font = "px Lucida Console";
     param.fontSize = 40;

@@ -3,6 +3,8 @@ var forg = document.getElementById("foreground");
 var parti = document.getElementById("particles");
 var inter = document.getElementById("interface");
 
+var font = "px Lucida Console";
+
 var Drawer = function() {
     let drawer = {};
     drawer.bg = bacg.getContext('2d');
@@ -10,7 +12,9 @@ var Drawer = function() {
     drawer.pr = parti.getContext('2d');
     drawer.ui = inter.getContext('2d');
 
-    drawer.drawRectangle = (ctx, _x, _y, color, indent, lineSize = cellSize*0.2, dir = 0) => {
+    drawer.popWindows = [];
+
+    drawer.drawCell = (ctx, _x, _y, color, indent, lineSize = cellSize*0.2, dir = 0) => {
         _x = _x*cellSize + cellSize
         _y = _y*cellSize + cellSize
     
@@ -37,6 +41,31 @@ var Drawer = function() {
             if (part.time > 10+rnd()*30) partArr.splice(i,1)
         }
     }
+
+    drawer.drawText = (_x, _y, string) => {
+        let ui = drawer.ui;
+
+        let fontSize = 40;
+
+        let stringWidth = string.length*fontSize*0.61;
+
+        ui.font = fontSize + font;
+        ui.fillStyle = "rgba(0,255,0,1)";
+        ui.fillText(string, _x - stringWidth/2, _y)
+    }
     
+    drawer.showPopWindow = (string, action) => {
+        drawer.popWindows.push(new Button(drawer.ui, string, w/4, h/4, "rgba(0,255,0,1)", true, 20, 50, () => {action(); drawer.popWindows.pop()}));
+        drawer.popWindows[0].draw();
+    }
+
+    drawer.drawUi = () => {
+        drawer.ui.clearRect(0,0,w,h)
+        user.drawScore();
+        drawer.popWindows.forEach(window => {
+            window.draw();
+        });
+    }
+
     return drawer;
 }

@@ -11,12 +11,12 @@ var Snake = function(_ctx, _x, _y) {
     }
 
     snake.drawHead = () => {
-        drawer.drawRectangle(snake.ctx ,snake.head.x, snake.head.y, colorSnake, cellSize*0.25, cellSize*0.2)
+        drawer.drawCell(snake.ctx ,snake.head.x, snake.head.y, colorSnake, cellSize*0.25, cellSize*0.2)
     }
 
     snake.drawBody = () => {
         snake.bodyArr.forEach(point => {
-            drawer.drawRectangle(snake.ctx ,point.x, point.y, colorSnake, cellSize*0.35, cellSize*0.2)
+            drawer.drawCell(snake.ctx ,point.x, point.y, colorSnake, cellSize*0.35, cellSize*0.2)
         });
     }
 
@@ -32,6 +32,7 @@ var Snake = function(_ctx, _x, _y) {
                 snake.bodyArr.pop()
                 if (apple.x == snake.head.x && apple.y == snake.head.y) {
                     apple.findPos()
+                    user.addScore();
                     snake.bodyArr.unshift(new BodyCell(snake.head.x, snake.head.y, snake.head.dir))
                     for (let i = 0; i < 6; i++) {
                         let _x = snake.head.x*cellSize+cellSize*1.5+(rnd()*2-1)*cellSize*0.1
@@ -41,7 +42,7 @@ var Snake = function(_ctx, _x, _y) {
                     
                 }
             }else {
-                //dead
+                gameEndActions();
             }
     }
 

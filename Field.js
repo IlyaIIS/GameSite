@@ -46,5 +46,5 @@ var Field = function(_ctx, _xSize, _ySize, _cellSize, _colors) {
 }
 
 function drawWall(ctx, _x, _y, color) {
-    drawer.drawRectangle(ctx, _x, _y, color, cellSize*0.15, cellSize*0.2);
+    drawer.drawCell(ctx, _x, _y, color, cellSize*0.15, cellSize*0.2);
 }
