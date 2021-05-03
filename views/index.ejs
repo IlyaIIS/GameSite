@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>OnLight</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Snake</title>
+    <link rel="stylesheet" href="/public/css/style.css">
 </head>
 <body>
     <header>
@@ -18,19 +18,16 @@
                   <li><a href="#">Вход</a></li>
                 </ul>
               </nav>
-        </div>>
+        </div>
     </header>
 
     <div class="promt">
       <div class="arrows">
-        <img src="img/стрелки клавиатуры.png" alt="Здесь должна быть картинка.">
+        <img src="public/img/стрелки клавиатуры.png" alt="Здесь должна быть картинка.">
       </div>
       <div class="promt-text">
-        Используйте стрелки клавиатуры для управления змейкой в игре.
-         Вы также можете использовать клавиши W, A, S, D. Если змейка 
-         не реагирует на нажатия, то кликните по игровому полю, чтобы 
-         сделать его активным. Могу еще что-нибудь написать, чтобы место
-          зря не пропадало. Кстати, здесь может быть ваша реклама!!! 
+        Вообще, у нас тут управление клнопками мыши реализовано, но стрелочки для красоты мы оставим.
+        Здесь могла быть ваша реклама.
       </div>
     </div>
 
@@ -53,7 +50,7 @@
           position: relative;
           border: 2px solid black;
         }
-      
+
         canvas { position: absolute; }
         #background { z-index: 1; }
         #foreground { z-index: 2; }
@@ -61,7 +58,7 @@
         #interface  { z-index: 4; }
       </style>
     <script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
-    <script src="Game.js"></script>
+    <script src="public/Game.js"></script>
 
     <div class="leaderboard">
       <h3>Таблица лидеров</h3>
