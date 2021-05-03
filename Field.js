@@ -6,28 +6,53 @@ var Cell = function(_x, _y) {
     return cell;
 }
 
-function getNewCellsArr(width, height) {
+function getNewCellsArr(width, height, difficulty) {
     let output = new Array()
     for (let y = 0; y < width; y++) {
         for (let x = 0; x < height; x++) {
             let cell = new Cell(x, y)
-            if (x == 0 || x == width - 1 || y == 0 || y == height - 1) cell.type = 1
-            if (((y == 0 || y == height - 1) && (x == 8 || x == 9)) || ((x == 0 || x == width - 1) && (y == 8 || y == 9))) 
-                cell.type = 0
             output[output.length] = cell
+
+            switch (difficulty) {
+                case 2:
+                    if ( ((x >= 0 && x <= width /4.5) || (x >= (width /4.5)*3 && x <= width - 1)) && 
+                         ((y >= 0 && y <= height/4.5) || (y >= (height/4.5)*3 && y <= height - 1)) )
+                            cell.type = 1;
+                    break;
+                case 3:
+                    if (x == 0 || x == width - 1 || y == 0 || y == height - 1) 
+                        cell.type = 1;
+                    if (((y == 0 || y == height - 1) && (x == 8 || x == 9)) || ((x == 0 || x == width - 1) && (y == 8 || y == 9))) 
+                        cell.type = 0;
+                    break;
+                case 4:
+                    if (x == 0 || x == width - 1 || y == 0 || y == height - 1) 
+                        cell.type = 1;
+                    break;
+                case 5:
+                    if (x == 0 || x == width - 1 || y == 0 || y == height - 1) 
+                        cell.type = 1;
+                    if (rnd() <= 0.05) 
+                        cell.type = 1;
+                    break;
+                default:
+                    break;
+            }
         }
     }
     return output
 }
 
-var Field = function(_ctx, _xSize, _ySize, _cellSize, _colors) {
+var Field = function(_ctx, _xSize, _ySize, _cellSize, _colors, difficulty) {
     let field = {};
     field.ctx = _ctx;
     field.cellSize = _cellSize;
     field.xSize = _xSize;
     field.ySize = _ySize;
     field.cellColors = _colors;
-    field.cellArr = getNewCellsArr(field.xSize, field.ySize);
+    field.difficulty = difficulty;
+
+    field.cellArr = getNewCellsArr(field.xSize, field.ySize, difficulty);
 
     field.getCellXY = (_x, _y) => field.cellArr[_y*field.xSize + _x];
 

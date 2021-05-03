@@ -13,6 +13,7 @@ var Drawer = function() {
     drawer.ui = inter.getContext('2d');
 
     drawer.popWindows = [];
+    drawer.buttons = [];
 
     drawer.drawCell = (ctx, _x, _y, color, indent, lineSize = cellSize*0.2, dir = 0) => {
         _x = _x*cellSize + cellSize
@@ -64,6 +65,9 @@ var Drawer = function() {
         user.drawScore();
         drawer.popWindows.forEach(window => {
             window.draw();
+        });
+        drawer.buttons.forEach(button => {
+            button.draw();
         });
     }
 

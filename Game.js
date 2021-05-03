@@ -11,7 +11,6 @@ var colors = [colorBackground, colorWall, colorSnake]
 var partArr = new Array()
 
 var drawer = Drawer();
-var field = new Field(drawer.bg, 18, 18, cellSize, colors);
 var mainMenu = MainMenu(drawer.ui, "rgba(0,255,0,1)")
 
 function clearForeground() {
@@ -19,6 +18,7 @@ function clearForeground() {
 }
 
 function startGame() {
+    field = new Field(drawer.bg, 18, 18, cellSize, colors, mainMenu.buttons[2].content);
     snake = new Snake(drawer.fg ,field.xSize/2, field.ySize/2);
     user = new User();
 
@@ -36,7 +36,9 @@ function startGame() {
     clearInterval(timer);
     timer = setInterval(timeTick, speed);
 
-    user.scoreMode = 1+(mainMenu.buttons[1].content-3)/4;
+    user.scoreMode = 1 + (mainMenu.buttons[1].content-3)/4 + (mainMenu.buttons[2].content-3)/4;
+
+    drawer.buttons.push(new Button(drawer.ui, "x", w-cellSize+3, 3, "rgba(0,255,0,1)", true, 0, 0, gameEndActions));
 }
 
 function timeTick() {
@@ -60,12 +62,13 @@ function gameEndActions() {
 }
 function goBackToMainMenu() {
     gameWindow = 0;
+    drawer.buttons = [];
     mainMenu.draw();
     timer = setInterval(timeTick, 10)
 }
 
 /////////////////////////////////////MainFunc////////////////////////////////////////
-var snake,user;
+var field,snake,user;
 
 var gameWindow = 0;
 
@@ -103,6 +106,11 @@ $('body').mouseup(function(e){
             })
         }
         else {
+            drawer.buttons.forEach(button => {
+                if (button.isCollision(e.pageX, e.pageY))
+                    button.click();
+            });
+            
             if (e.which == 1) 
                 if ((snake.head.dir+3)%4 != snake.bodyArr[0].dir)
                     snake.head.dir = (snake.head.dir+1)%4
