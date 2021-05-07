@@ -26,20 +26,15 @@ var Snake = function(_ctx, _x, _y) {
         let cell = field.getCellXY(_x, _y)
         if (cell != undefined)
             if ((cell.type != 1) && (!snake.IsThere(_x, _y))) {
-                snake.bodyArr.unshift(new BodyCell(snake.head.x, snake.head.y, snake.head.dir))
-                snake.head.x = _x
-                snake.head.y = _y
-                snake.bodyArr.pop()
-                if (apple.x == snake.head.x && apple.y == snake.head.y) {
-                    apple.findPos()
-                    user.addScore();
-                    snake.bodyArr.unshift(new BodyCell(snake.head.x, snake.head.y, snake.head.dir))
-                    for (let i = 0; i < 6; i++) {
-                        let _x = snake.head.x*cellSize+cellSize*1.5+(rnd()*2-1)*cellSize*0.1
-                        let _y = snake.head.y*cellSize+cellSize*1.5+(rnd()*2-1)*cellSize*0.1
-                        partArr[partArr.length] = new Particle(drawer.pr, _x, _y, rnd()*360)
+                snake.bodyArr.unshift(new BodyCell(snake.head.x, snake.head.y, snake.head.dir));
+                snake.head.x = _x;
+                snake.head.y = _y;
+                snake.bodyArr.pop();
+                for (let i = 0; i < appleArr.length; i++) {
+                    let apple = appleArr[i];
+                    if (apple.x == snake.head.x && apple.y == snake.head.y) {
+                        apple.eatenUp();
                     }
-                    
                 }
             }else {
                 gameEndActions();
@@ -47,21 +42,29 @@ var Snake = function(_ctx, _x, _y) {
     }
 
     snake.IsThere = (_x, _y) => {
-        if (_x == snake.head.x && _y == snake.head.y) return true
+        if (_x == snake.head.x && _y == snake.head.y) return true;
         for(let i = 0; i < snake.bodyArr.length - 1; i++) {
-            if (_x == snake.bodyArr[i].x && _y == snake.bodyArr[i].y) return true
+            if (_x == snake.bodyArr[i].x && _y == snake.bodyArr[i].y) return true;
         }
-        return false
+        return false;
     }
 
     snake.tryTurnLeft = () => {
         if ((snake.head.dir+3)%4 != snake.bodyArr[0].dir)
-                snake.head.dir = (snake.head.dir+1)%4
+                snake.head.dir = (snake.head.dir+1)%4;
     }
 
     snake.tryTurnRight = () => {
         if ((snake.head.dir+1)%4 != snake.bodyArr[0].dir)
-                snake.head.dir = (snake.head.dir+3)%4
+                snake.head.dir = (snake.head.dir+3)%4;
+    }
+
+    snake.increaseSize = () => {
+        snake.bodyArr.unshift(new BodyCell(snake.head.x, snake.head.y, snake.head.dir));
+    }
+
+    snake.reduceSize = () => {
+        snake.bodyArr.pop();
     }
 
     return snake

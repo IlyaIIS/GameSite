@@ -9,6 +9,7 @@ var colorWall = "rgba(0,190,55,1)"
 var colorSnake = "rgba(155,235,0,1)"
 var colors = [colorBackground, colorWall, colorSnake]
 var partArr = new Array()
+var appleArr = new Array();
 
 var drawer = Drawer();
 var mainMenu = MainMenu(drawer.ui, "rgba(0,255,0,1)")
@@ -21,6 +22,8 @@ function startGame() {
     field = new Field(drawer.bg, 18, 18, cellSize, colors, mainMenu.buttons[2].content);
     snake = new Snake(drawer.fg ,field.xSize/2, field.ySize/2);
     user = new User();
+    appleArr = new Array();
+    appleArr.push(new Apple());
 
     gameWindow = 1;
 
@@ -29,10 +32,9 @@ function startGame() {
     field.clear()
     field.draw()
     snake.draw()
-    apple.findPos()
-    apple.draw()
+    appleArr[0].draw()
 
-    let speed = 350 - (mainMenu.buttons[1].content*50)
+    let speed = 350 - (mainMenu.buttons[1].content*50);
     clearInterval(timer);
     timer = setInterval(timeTick, speed);
 
@@ -47,7 +49,9 @@ function timeTick() {
 
         clearForeground();
         snake.draw();
-        apple.draw();
+        appleArr.forEach(apple => {
+            apple.draw();
+        });
         drawer.drawUi();
     }
     else {
@@ -78,16 +82,20 @@ drawer.ui.shadowBlur = 3;
 
 mainMenu.draw()
 
-let start = Date.now(); 
+var startTime = Date.now();
+var isAlarm = false;
+var isSlow = false;
 var sleepTime = 10;
 var timer = setInterval(function() {
-
- // let timePassed = Date.now() - start;
-
-//   if (timePassed >= 2000) {
-//     clearInterval(timer); // закончить анимацию через 2 секунды
-//     return;
-//   }
+    // if (isAlarm) {
+    //     if (Date.now() - startTime >= 4000) {
+    //         isAlarm = false;
+    //         let speed = 350 - (mainMenu.buttons[1].content*50);
+    //         clearInterval(timer);
+    //         timer = setInterval(timeTick, speed);
+    //         return;
+    //     }
+    // }
 
     timeTick();
 
