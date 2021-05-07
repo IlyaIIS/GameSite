@@ -54,6 +54,16 @@ var Snake = function(_ctx, _x, _y) {
         return false
     }
 
+    snake.tryTurnLeft = () => {
+        if ((snake.head.dir+3)%4 != snake.bodyArr[0].dir)
+                snake.head.dir = (snake.head.dir+1)%4
+    }
+
+    snake.tryTurnRight = () => {
+        if ((snake.head.dir+1)%4 != snake.bodyArr[0].dir)
+                snake.head.dir = (snake.head.dir+3)%4
+    }
+
     return snake
 }
 

@@ -98,6 +98,7 @@ let timer2 = setInterval(function() {
 }, 20);
 
 $('body').mouseup(function(e){
+    
     if (gameWindow == 1) {
         if (drawer.popWindows.length > 0) {
             drawer.popWindows.forEach(window => {
@@ -112,11 +113,9 @@ $('body').mouseup(function(e){
             });
             
             if (e.which == 1) 
-                if ((snake.head.dir+3)%4 != snake.bodyArr[0].dir)
-                    snake.head.dir = (snake.head.dir+1)%4
+                snake.tryTurnLeft();
             if (e.which == 3) 
-                if ((snake.head.dir+1)%4 != snake.bodyArr[0].dir)
-                    snake.head.dir = (snake.head.dir+3)%4
+                snake.tryTurnRight();
         }
     }
     else {
@@ -125,4 +124,13 @@ $('body').mouseup(function(e){
                 button.click();
         });
     };
+});
+
+document.addEventListener('keyup', function(e){
+    if (gameWindow == 1) {
+        if (e.code == "KeyA" || e.code == "ArrowLeft") 
+            snake.tryTurnLeft();
+        if (e.code == "KeyD" || e.code == "ArrowRight") 
+            snake.tryTurnRight();
+    }
 });
