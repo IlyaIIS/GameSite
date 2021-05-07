@@ -12,7 +12,7 @@ class Apple {
         do {
             _x = Math.round(rnd()*(field.xSize-1))
             _y = Math.round(rnd()*(field.ySize-1))
-        }while(field.getCellXY(_x, _y).type == 1 || snake.IsThere(_x, _y))
+        }while(field.getCellXY(_x, _y).type == 1 || snake.IsThere(_x, _y) || appleIsThere(_x, _y))
         this.x = _x
         this.y = _y
     }
@@ -64,4 +64,13 @@ class SlowApple extends Apple {
         clearInterval(timer);
         timer = setInterval(timeTick, speed*1.5);
     }
+}
+
+function appleIsThere(x, y) {
+    appleArr.forEach(apple => {
+        if (apple.x == x && apple.y == y) {
+            return true;
+        }
+    });
+    return false;
 }

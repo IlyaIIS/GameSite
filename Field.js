@@ -8,8 +8,8 @@ var Cell = function(_x, _y) {
 
 function getNewCellsArr(width, height, difficulty) {
     let output = new Array()
-    for (let y = 0; y < width; y++) {
-        for (let x = 0; x < height; x++) {
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
             let cell = new Cell(x, y)
             output[output.length] = cell
 
@@ -32,8 +32,6 @@ function getNewCellsArr(width, height, difficulty) {
                 case 5:
                     if (x == 0 || x == width - 1 || y == 0 || y == height - 1) 
                         cell.type = 1;
-                    if (rnd() <= 0.05) 
-                        cell.type = 1;
                     break;
                 default:
                     break;
@@ -41,6 +39,37 @@ function getNewCellsArr(width, height, difficulty) {
         }
     }
     return output
+}
+
+function addRndBlocks(width, height, cellArr) {
+    let rndCellNum = 0;
+    for (let i = 0; i < cellArr.length; i++) {
+        cell = cellArr[Math.floor(rnd()*cellArr.length)]
+        
+        if (rnd() <= 0.05+(10-rndCellNum)/10) {
+            rndCellNum++;
+            cell.type = 1;
+        }
+
+        if (cell.x == width/2 && cell.y > 0 && cell.y < height/2 + 2)
+        cell.type = 0;
+    }
+    
+}
+
+function removeDeadlocks(width, cellArr) {
+    for (let j = 0; j < 5; j++) {
+        for (let i = width; i < cellArr.length - width; i++) {
+            let blockNum = 0;
+    
+            if (cellArr[i+1].type == 1) blockNum++;
+            if (cellArr[i-width].type == 1) blockNum++;
+            if (cellArr[i-1].type == 1) blockNum++;
+            if (cellArr[i+width].type == 1) blockNum++;
+            
+            if (blockNum >= 3) cellArr[i].type = 1;
+        }
+    }
 }
 
 var Field = function(_ctx, _xSize, _ySize, _cellSize, _colors, difficulty) {
@@ -53,6 +82,11 @@ var Field = function(_ctx, _xSize, _ySize, _cellSize, _colors, difficulty) {
     field.difficulty = difficulty;
 
     field.cellArr = getNewCellsArr(field.xSize, field.ySize, difficulty);
+    if (field.difficulty == 5) {
+        addRndBlocks(field.xSize, field.ySize, field.cellArr);
+        removeDeadlocks(field.xSize, field.cellArr);
+    }
+    
 
     field.getCellXY = (_x, _y) => field.cellArr[_y*field.xSize + _x];
 
