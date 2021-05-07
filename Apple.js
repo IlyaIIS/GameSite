@@ -24,7 +24,7 @@ class Apple {
     eatenUp() {
         snake.increaseSize();
         user.addScore();
-        createParticles(snake.head.x, snake.head.y, 5, this.color);
+        createParticles(snake.head.x, snake.head.y, 6, this.color);
         this.findPos();
         if (snake.bodyArr.length >= 10 && rnd() <= 0.1) 
             appleArr.push(new AntiApple());
@@ -44,9 +44,11 @@ class AntiApple extends Apple {
     color = "rgb(255,255,0)";
 
     eatenUp() {
+        createParticles(snake.head.x, snake.head.y, 5, this.color);
+        createParticles(snake.bodyArr[snake.bodyArr.length-1].x, snake.bodyArr[snake.bodyArr.length-1].y, 3, colorSnake);
         snake.reduceSize();
         user.addScore();
-        createParticles(snake.head.x, snake.head.y, 5, this.color);
+        
         appleArr.splice(appleArr.indexOf(this),1);
     }
 }
@@ -56,7 +58,7 @@ class SlowApple extends Apple {
 
     eatenUp() {
         user.addScore();
-        createParticles(snake.head.x, snake.head.y, 5, this.color);
+        createParticles(snake.head.x, snake.head.y, 10, this.color);
         appleArr.splice(appleArr.indexOf(this),1);
 
         isSlow = true;
