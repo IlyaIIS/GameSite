@@ -82,6 +82,7 @@ var Field = function(_ctx, _xSize, _ySize, _cellSize, _colors, difficulty) {
     field.difficulty = difficulty;
 
     field.cellArr = getNewCellsArr(field.xSize, field.ySize, difficulty);
+    
     if (field.difficulty == 5) {
         addRndBlocks(field.xSize, field.ySize, field.cellArr);
         removeDeadlocks(field.xSize, field.cellArr);

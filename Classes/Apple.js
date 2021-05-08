@@ -18,7 +18,7 @@ class Apple {
     }
 
     draw() {
-        drawer.drawCell(drawer.fg, this.x, this.y, this.color, cellSize*0.25, cellSize*0.1, cellSize/4 )
+        drawer.drawCell(drawer.fg, this.x, this.y, this.color, cellSize*0.25, cellSize*0.1, cellSize/4 );
     }
 
     eatenUp() {

@@ -6,10 +6,12 @@ var rnd = Math.random
 var cellSize = 30;
 var colorBackground = "rgba(0,190,55,0.1)"
 var colorWall = "rgba(0,190,55,1)"
-var colorSnake = "rgba(155,235,0)"
-var colors = [colorBackground, colorWall, colorSnake]
+var colorSnake = "rgb(155,235,0)"
+var colorPortal = "rgba(0,0,255,1)"
+var colors = [colorBackground, colorWall, colorSnake, colorPortal]
 var partArr = new Array()
 var appleArr = new Array();
+var portalArr = new Array();
 
 var drawer = Drawer();
 var mainMenu = MainMenu(drawer.ui, "rgba(0,255,0,1)")
@@ -22,8 +24,14 @@ function startGame() {
     field = new Field(drawer.bg, 18, 18, cellSize, colors, mainMenu.buttons[2].content);
     snake = new Snake(drawer.fg ,field.xSize/2, field.ySize/2);
     user = new User();
+
     appleArr = new Array();
     appleArr.push(new Apple());
+
+    portalArr = new Array();
+    portalArr.push(new Portal());
+    portalArr.push(new Portal());
+    portalArr[0].link(portalArr[1]);
 
     gameWindow = 1;
 
