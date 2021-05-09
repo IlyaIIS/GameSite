@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Snake</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <div class="menu">
+              <h1>Snake</h1>
+              <nav>
+                <ul>
+                  <li><a href="/">Главная</a></li>
+                  <li><a href="#">Профиль</a></li>
+                  <li><a href="#">О нас</a></li>
+                  <li><a href="#">Регистрация</a></li>
+                  <li><a href="#">Вход</a></li>
+                </ul>
+              </nav>
+        </div>>
+    </header>
+
+    <div id="form">
+      <form method="post" action="/registration">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Электронная почта</label>
+            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Пароль</label>
+            <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+          </div>
+          <button type="submit" class="btn btn-primary">Отправить</button>
+      </form>
+    </div>
+</body>
+</html>
