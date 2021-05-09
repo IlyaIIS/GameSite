@@ -16,38 +16,37 @@ article, aside, canvas, details, embed, figure, figcaption, footer, header, hgro
 
 header h1 {
     position: relative;
-    top: -0.4em;
+    top: -0.1em;
     left: 12px;
     float:left;
-    width: 120px;
-    height: 120px;
+    width: 336px;
+    height: 178.78px;
 
     font-family: Rounded Mplus 1c Bold;
     font-style: normal;
     font-weight: bold;
-    font-size: 80px;
+    font-size: calc(3em + 4vw);
     line-height: 178px;
     color: #E7E7E7;
 }
 
 header ul {
-    margin-top: 20px;
     list-style: none; /*убираем маркеры списка*/
-    margin-left: 0; /*убираем верхнее и нижнее поле, равное 1em*/
+    margin: 0; /*убираем верхнее и нижнее поле, равное 1em*/
     padding-left: 0; /*убираем левый отступ, равный 40px*/
-    display: flex; /*горизонтальный вид*/
     height: 230px;
-
 }
 
 .menu {
+    display: flex;
+    justify-content: space-between;
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
-    border-radius: 0 0 45px 45px;
+    border-radius: 0 0 49px 49px;
     position: relative;
     z-index: 1;
     background: inherit;
     overflow: hidden;
-    height: 120px;
+    height: 180px;
     background: rgba(238, 238, 238, 0.01);
     box-shadow: inset 0px 39px 56px -36px rgba(255, 255, 255, 0.5), inset 0px 7px 11px -4px #FFFFFF, inset 0px -82px 68px -64px rgba(96, 68, 144, 0.3), inset 0px 98px 100px -48px rgba(202, 172, 255, 0.3), inset 0px 4px 18px rgba(154, 146, 210, 0.3), inset 0px 1px 0px rgba(227, 222, 255, 0.2);
     backdrop-filter: blur(100px);
@@ -87,7 +86,6 @@ nav ul li a{
     letter-spacing: 1px;
     text-decoration: none;
 
-    font-family: Roboto;
     font-style: normal;
     font-weight: bold;
 }
@@ -99,7 +97,7 @@ a {
 .container{
     display: flex;
     justify-content:space-between;
-    margin: 20px 200px 20px 120px;
+    margin: 20px 1em 20px 120px;
 }
 
 .promt{
@@ -111,10 +109,9 @@ a {
     border-radius: 4px;
 
     position: static;
-    width: 800px;
+    max-width: 800px;
     height: 153.92px;
-    margin-left: 120px;
-    margin-top: 30px;
+    margin: 20px 20px 0 120px;
 }
 
 .arrows{
@@ -123,7 +120,6 @@ a {
 
 .promt-text{
     margin-left: 25px;
-    font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
@@ -155,22 +151,23 @@ a {
 }
 
 .comments{
-    display:flex;
-    justify-content: center;
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
     border-radius: 49px;
-    position: relative;
+    position: fixed;
+    top: 210px;
+    right: 40px;
     z-index: 1;
     background: inherit;
     overflow: hidden;
-    height: 604px;
-    width: 300px;
+    height: 500px;
+    width: 350px;
     background: rgba(238, 238, 238, 0.01);
-    box-shadow: inset 0px 39px 56px -36px rgba(255, 255, 255, 0.5), inset 0px 7px 11px -4px #FFFFFF, inset 0px -82px 68px -64px rgba(96, 68, 144, 0.3), inset 0px 98px 100px -48px rgba(202, 172, 255, 0.3), inset 0px 4px 18px rgba(154, 146, 210, 0.3), inset 0px 1px 0px rgba(227, 222, 255, 0.2);
+    box-shadow: inset 0px 39px 56px -36px rgba(255, 255, 255, 0.5), inset 0px 7px 11px -4px #FFFFFF,
+                inset 0px -82px 68px -64px rgba(96, 68, 144, 0.3), inset 0px 98px 100px -48px rgba(202, 172, 255, 0.3),
+                 inset 0px 4px 18px rgba(154, 146, 210, 0.3), inset 0px 1px 0px rgba(227, 222, 255, 0.2);
     backdrop-filter: blur(100px);
 }
 
 .comments > h3{
-    align-items: center;
-    justify-self:right
+    text-align: center;
 }
