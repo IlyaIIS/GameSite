@@ -23,6 +23,8 @@
     </div>
   </header>
 
+  <input type="checkbox" id="comments-toggle" hidden>
+
   <div class="promt">
     <div class="arrows">
       <img src="img/стрелки клавиатуры.png" alt="Здесь должна быть картинка.">
@@ -36,15 +38,16 @@
     </div>
   </div>
 
-  <div class="comments">
-    <h3>Чат</h3>
-  </div>
   <div class="container">
     <div id='game' oncontextmenu="return false">
       <canvas width="800" height="600" id='background'></canvas>
       <canvas width="800" height="600" id='foreground'></canvas>
       <canvas width="800" height="600" id='particles'></canvas>
       <canvas width="800" height="600" id='interface'></canvas>
+    </div>
+    <div class="comments">
+      <h3>Чат</h3>
+      <label for="comments-toggle" class="comments-toggle" onclick></label>
     </div>
   </div>
   <style>

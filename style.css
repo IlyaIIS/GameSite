@@ -2,6 +2,9 @@ body {
     background: linear-gradient(180deg, #121683 0%, #07082B 100%);
     background-image: url("img/фон.png");
 }
+* {
+    box-sizing: border-box;
+}
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
@@ -44,7 +47,6 @@ header ul {
     border-radius: 0 0 49px 49px;
     position: relative;
     z-index: 1;
-    background: inherit;
     overflow: hidden;
     height: 180px;
     background: rgba(238, 238, 238, 0.01);
@@ -82,7 +84,7 @@ nav ul li a{
     display: block; 
     padding: 10px 20px;
     color: #E7E7E7;
-    font-size: .9em;
+    font-size: 1em;
     letter-spacing: 1px;
     text-decoration: none;
 
@@ -98,7 +100,7 @@ a {
 .container{
     display: flex;
     justify-content:space-between;
-    margin: 20px 1em 20px 120px;
+    margin: 20px 8% 20px 8%;
 }
 
 .promt{
@@ -112,7 +114,7 @@ a {
     position: static;
     max-width: 800px;
     height: 153.92px;
-    margin: 20px 20px 0 120px;
+    margin: 20px 20px 0 8%;
 }
 
 .arrows{
@@ -141,7 +143,7 @@ a {
     position: static;
     width: 800px;
     height: 153.92px;
-    margin:0 0 10px 120px;
+    margin:0 0 10px 8%;
 }
 
 .leaderboard > h3, p{
@@ -155,21 +157,134 @@ a {
 .comments{
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
     border-radius: 49px;
-    position: fixed;
     top: 210px;
     right: 40px;
-    z-index: 1;
     background: inherit;
-    overflow: hidden;
     height: 500px;
     width: 350px;
     background: rgba(238, 238, 238, 0.01);
     box-shadow: inset 0px 39px 56px -36px rgba(255, 255, 255, 0.5), inset 0px 7px 11px -4px #FFFFFF, 
                 inset 0px -82px 68px -64px rgba(96, 68, 144, 0.3), inset 0px 98px 100px -48px rgba(202, 172, 255, 0.3),
-                 inset 0px 4px 18px rgba(154, 146, 210, 0.3), inset 0px 1px 0px rgba(227, 222, 255, 0.2);
+                inset 0px 4px 18px rgba(154, 146, 210, 0.3), inset 0px 1px 0px rgba(227, 222, 255, 0.2);
     backdrop-filter: blur(100px);
 }
 
 .comments > h3{
     text-align: center;
+}
+
+@media (max-width: 1400px) {
+    .promt, .container, .leaderboard{margin-left: 1%;}
+    .container{margin-right: 1%;}
+}
+
+
+@media (max-width: 1190px) {
+    .container{
+        justify-content: flex-start;
+    }
+
+    .comments {
+        /*  ширна произвольная, не стесняйтесь экспериментировать */
+        width: 320px;
+        min-width: 320px;
+        /* фиксируем и выставляем высоту панели на максимум */
+        position: fixed;
+        /* сдвигаем (прячем) панель относительно правого края страницы */
+        right: -320px;
+        /* внутренние отступы */
+        /* плавный переход смещения панели */
+        -webkit-transition: right 0.3s;
+        -moz-transition: right 0.3s;
+        transition: right 0.3s;
+        /* поверх других элементов */
+        z-index: 2000;
+    }
+    
+    
+    
+    .comments-toggle {
+        /* абсолютно позиционируем */
+        position: absolute;
+        height: 65px;
+        width: 25px;
+        border-radius: 2px;
+        right: 330px;
+        /* цвет текста */
+        color: #dadada;
+        /* вид курсора */
+        cursor: pointer;
+        font-size: 1.2em;
+        z-index: 2001;
+        /* анимируем цвет текста при наведении */
+        -webkit-transition: color .25s ease-in-out;
+        -moz-transition: color .25s ease-in-out;
+        transition: color .25s ease-in-out;
+        text-align: center; word-wrap: break-word;
+        padding-right: 10px;
+        background: rgba(238, 238, 238, 0.01);
+        box-shadow: inset 0px 39px 56px -36px rgba(255, 255, 255, 0.5), inset 0px 7px 11px -4px #FFFFFF, inset 0px -82px 68px -64px rgba(96, 68, 144, 0.3), inset 0px 98px 100px -48px rgba(202, 172, 255, 0.3), inset 0px 4px 18px rgba(154, 146, 210, 0.3), inset 0px 1px 0px rgba(227, 222, 255, 0.2);
+        backdrop-filter: blur(100px);
+    }
+    
+    
+    /* текст кнопки */
+    
+    .comments-toggle:after {
+        content: 'Чат';
+        text-decoration: none;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+    }
+    
+    
+    
+    /**
+     * Скрытый чекбокс (флажок)
+     * имя селектора атрибут флажка
+     */
+    
+    [id='comments-toggle'] {
+        position: absolute;
+        display: none;
+    }
+    
+    
+    /**
+     * изменение положения переключателя 
+     * при просмотре на мобильных устройствах
+     * когда навигация раскрыта, распологаем внутри панели
+    */
+    
+    [id='comments-toggle']:checked ~ .comments > .comments-toggle {
+        left: auto;
+        right: 2px;
+        top: 1em;
+        box-shadow: none;
+        backdrop-filter:unset;
+    }
+    
+    
+    /**
+     * Когда флажок установлен, открывается панель
+     *псевдокласс:checked
+     */
+    
+    [id='comments-toggle']:checked ~ .comments {
+        right: 0;
+        box-shadow:-4px 0px 20px 0px rgba(0,0,0, 0.5);
+        -moz-box-shadow:-4px 0px 20px 0px rgba(0,0,0, 0.5);
+        -webkit-box-shadow:-4px 0px 20px 0px rgba(0,0,0, 0.5);
+        overflow-y: auto;
+    }
+    
+    /*
+     * изменение символа переключателя,
+     * крестик
+    */
+    
+    [id='comments-toggle']:checked ~ .comments > .comments-toggle:after {
+        content: '\2715';
+    }
 }
