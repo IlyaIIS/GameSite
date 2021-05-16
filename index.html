@@ -16,8 +16,8 @@
           <li><a href="#">Главная</a></li>
           <li><a href="#">Профиль</a></li>
           <li><a href="#">О нас</a></li>
-          <li><a href="#">Регистрация</a></li>
-          <li><a href="#">Вход</a></li>
+          <li><a href="#check1">Регистрация</a></li>
+          <li><a href="#check2">Вход</a></li>
         </ul>
       </nav>
     </div>
@@ -31,19 +31,18 @@
     </div>
     <div class="promt-text">
       Используйте стрелки клавиатуры для управления змейкой в игре.
-      Вы также можете использовать клавиши W, A, S, D. Если змейка
-      не реагирует на нажатия, то кликните по игровому полю, чтобы
-      сделать его активным. Могу еще что-нибудь написать, чтобы место
-      зря не пропадало. Кстати, здесь может быть ваша реклама!!!
+      Вы также можете использовать клавиши W, A, S, D. Также
+      реализованно управление с помощью кнопок мыши. Кстати,
+      здесь может быть ваша реклама!!!
     </div>
   </div>
 
   <div class="container">
     <div id='game' oncontextmenu="return false">
-      <canvas width="800" height="600" id='background'></canvas>
-      <canvas width="800" height="600" id='foreground'></canvas>
-      <canvas width="800" height="600" id='particles'></canvas>
-      <canvas width="800" height="600" id='interface'></canvas>
+      <canvas width="600" height="600" id='background'></canvas>
+      <canvas width="600" height="600" id='foreground'></canvas>
+      <canvas width="600" height="600" id='particles'></canvas>
+      <canvas width="600" height="600" id='interface'></canvas>
     </div>
     <div class="comments">
       <h3>Чат</h3>
@@ -52,7 +51,7 @@
   </div>
   <style>
     #game {
-      width: 800px;
+      width: 600px;
       height: 600px;
       position: relative;
       border: 2px solid black;
@@ -87,6 +86,76 @@
       <p>
         1. Test <br> test
       </p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('hider').onclick = function () {
+      if (document.getElementById('check1').hidden == true) {
+        document.getElementById('check1').hidden = false
+      }
+      else {
+        document.getElementById('check1').hidden = true
+      }
+    }
+  </script>
+
+  <div class="back" id="check1">
+    <a href="#closeWindow"></a>
+    <div class="window">
+      <form action="">
+        <center>
+          <h2>Регистрация</h2>
+        </center>
+        <div class="group">
+          <label>Имя пользователя:</label>
+          <input type="text">
+        </div>
+        <div class="group">
+          <label>Пароль:</label>
+          <input type="password">
+        </div>
+        <div class="group">
+          <label>Повторите пароль:</label>
+          <input type="password">
+        </div>
+        <div class="group">
+          <center><button>Зарегистрироваться</button></center>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('hider').onclick = function () {
+      if (document.getElementById('check2').hidden == true) {
+        document.getElementById('check2').hidden = false
+      }
+      else {
+        document.getElementById('check2').hidden = true
+      }
+    }
+  </script>
+
+  <div class="back" id="check2">
+    <a href="#closeWindow"></a>
+    <div class="window">
+      <form action="">
+        <center>
+          <h2>Вход</h2>
+        </center>
+        <div class="group">
+          <label>Имя пользователя:</label>
+          <input type="text">
+        </div>
+        <div class="group">
+          <label>Пароль:</label>
+          <input type="password">
+        </div>
+        <div class="group">
+          <center><button>Войти</button></center>
+        </div>
+      </form>
     </div>
   </div>
 </body>
