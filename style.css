@@ -160,7 +160,7 @@ a {
     top: 210px;
     right: 40px;
     background: inherit;
-    height: 500px;
+    height: 600px;
     width: 350px;
     background: rgba(238, 238, 238, 0.01);
     box-shadow: inset 0px 39px 56px -36px rgba(255, 255, 255, 0.5), inset 0px 7px 11px -4px #FFFFFF, 
@@ -173,13 +173,18 @@ a {
     text-align: center;
 }
 
-.comments > div {
+.comments > div > div {
     margin-bottom: 35px;
 }
 
-.comments > div > p{
+.comments > div > div > p{
     line-height: 15px;
     margin-bottom: -15px;
+}
+
+.comments > div {
+    height: 500px;
+    overflow: auto;
 }
 
 .text {
