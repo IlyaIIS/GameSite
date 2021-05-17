@@ -171,6 +171,7 @@ a {
 
 .comments > h3{
     text-align: center;
+    margin-bottom: 12px;
 }
 
 .comments > div > div {
@@ -193,11 +194,20 @@ a {
 
 .comments > button{
     position: absolute;
+    height: 25px;
     bottom: 12px;
     right: 15px;
     border-radius: 12px 12px 60px 12px;
     border: none;
     background-color: rgba(103, 255, 255, 0.837);
+}
+
+.comments > textarea{
+    position: absolute;
+    bottom: 12px;
+    border-radius: 10px 10px 10px 22px;
+    height: 50px;
+    resize: none;
 }
 
 @media (max-width: 1200px) {
@@ -212,14 +222,10 @@ a {
     }
 
     .comments {
-        /*  ширна произвольная, не стесняйтесь экспериментировать */
         width: 320px;
         min-width: 320px;
-        /* фиксируем и выставляем высоту панели на максимум */
         position: fixed;
-        /* сдвигаем (прячем) панель относительно правого края страницы */
         right: -320px;
-        /* внутренние отступы */
         /* плавный переход смещения панели */
         -webkit-transition: right 0.3s;
         -moz-transition: right 0.3s;
@@ -237,7 +243,6 @@ a {
         width: 25px;
         border-radius: 2px;
         right: 330px;
-        /* цвет текста */
         color: #dadada;
         /* вид курсора */
         cursor: pointer;
@@ -279,11 +284,7 @@ a {
         display: none;
     }
     
-    
-    /**
-     * изменение положения переключателя 
-     * при просмотре на мобильных устройствах
-    */
+
     
     [id='comments-toggle']:checked ~ .container > .comments > .comments-toggle {
         left: auto;
@@ -364,7 +365,7 @@ label{
     color: lightgreen;
 }
 
-input{
+.group > input{
     height: 40px;
     width: 400px;
     border-radius: 20px;
