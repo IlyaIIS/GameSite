@@ -222,7 +222,9 @@ a {
     }
 
     .comments {
+        top: 25%;
         width: 320px;
+        height:500px;
         min-width: 320px;
         position: fixed;
         right: -320px;
@@ -230,11 +232,22 @@ a {
         -webkit-transition: right 0.3s;
         -moz-transition: right 0.3s;
         transition: right 0.3s;
-        /* поверх других элементов */
         z-index: 2000;
+        border-radius: 30px 0 0 30px;
+    }
+
+    .comments > div{
+        height: 280px;
     }
     
-    
+    .comments > textarea{
+        width: 220px;
+    }
+
+    .comments > button{
+        border-radius: 5px;
+        right: 3px;
+    }
     
     .comments-toggle {
         /* абсолютно позиционируем */
