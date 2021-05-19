@@ -47,28 +47,11 @@
     <div class="comments">
       <h3>Чат</h3>
       <label for="comments-toggle" class="comments-toggle" onclick></label>
-      <div>
-        <div>
-          <p>Lorem <br></p>
-          <p class="text"><br>
-            ipsum dolor sit amet consectetur adipisicing elit.
-            Aliquid voluptatem blanditiis quod iste, eaque beatae qui et
-            cum non inventore delectus quas omnis eius est ab ipsum assumenda
-            aliquam a.
-          </p>
-        </div>
-        <div>
-          <p>Lorem <br></p>
-          <p class="text"><br>
-            ipsum dolor sit amet consectetur adipisicing elit.
-            Aliquid voluptatem blanditiis quod iste, eaque beatae qui et
-            cum non inventore delectus quas omnis eius est ab ipsum assumenda
-            aliquam a.
-          </p>
-        </div>
+      <div id="message_container">
+        <!-- сюда вставляются комментарии пользователей-->
       </div>
-      <textarea name="comment" cols="30" rows="2"></textarea></p>
-      <button>Отправить</button>
+      <textarea id="comment" name="comment" cols="30" rows="2"></textarea></p>
+      <button onclick="chatButtonClick()">Отправить</button>
     </div>
   </div>
   <style>
@@ -101,6 +84,40 @@
   </style>
   <script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
   <script src="Game.js"></script>
+
+  <script> 
+    function chatButtonClick() {
+      let comment = document.getElementById("comment");
+      let uesrName = "";//получить имя пользователя из кэша
+      let text = comment.value;
+
+      xmlhttp.open('POST', 'test.php', true); // Открываем асинхронное соединение
+      xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // Отправляем кодировку
+      xmlhttp.send("a=" + encodeURIComponent(a) + "&b=" + encodeURIComponent(b)); // Отправляем POST-запрос
+      xmlhttp.onreadystatechange = function() { // Ждём ответа от сервера
+      if (xmlhttp.readyState == 4) { // Ответ пришёл
+        if(xmlhttp.status == 200) { // Сервер вернул код 200 (что хорошо)
+          document.getElementById("comment").value = xmlhttp.responseText; // Выводим ответ сервера
+        }
+      }
+      
+      //Отправка сообщения на бэк (в виде двух переменных userName и text)
+      //Приём сообщений с бэка и (распарсивание его на массив massages - могу сделать сам)
+      class Message {
+        constructor(_name, _text) {
+          this.name = _name;
+          this.text = _text;
+        }
+      }
+
+      let messages = [new Message("Ярослав",text)];
+
+      messages.forEach(message => {
+        document.getElementById("message_container").innerHTML += "<div><p>" + message.name + "<br></p><p class=\"text\"><br>" + message.text + "</p></div>";
+      });
+      comment.value = "";
+    }
+  </script>
 
   <div class="leaderboard">
     <center><h3>Таблица лидеров</h3></center>
