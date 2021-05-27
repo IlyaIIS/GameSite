@@ -1,3 +1,4 @@
+const PORT =  3000;
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -10,6 +11,7 @@ const methodOverride = require('method-override');
 const sqlite = require('sqlite-sync');
 
 const initializePassport = require('./passport-config');
+
 
 function GetUserByName(username) {
   sqlite.connect('users.sqlite3');
@@ -42,8 +44,6 @@ var db = new sqlite3.Database('users.sqlite3');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use(urlencodedParser);
 
-const PORT =  3000;
-
 app.set('view engine', 'ejs');
 
 app.use('/public', express.static('public'));
@@ -59,10 +59,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride('_method'));
 
-
-app.get('/', function(req, res) {
-  res.render('index');
+app.get('/', function(req,res) {
+  if(req.isAuthenticated()) {
+    res.render('index', { name: req.user.username});
+  } else {
+    res.render('index', { name: 'гость'});
+  };
 });
+
+
+
 
 app.post('/registration', urlencodedParser,async function(req, res) {
   if(!req.body) return res.sendStatus(400);
@@ -73,15 +79,12 @@ app.post('/registration', urlencodedParser,async function(req, res) {
     var stmt = db.prepare("INSERT INTO users (username, password, score) VALUES(?,?,?)");
     stmt.run(req.body.regUsername, hashedPassword, 0);
 
-    console.log('Регистрация прошла успешно');
-
   } catch {
 
-  }
+  };
   res.redirect('/');
 
 });
-
 
 app.post('/login', passport.authenticate('local', {
     successRedirect: '/',
@@ -104,6 +107,18 @@ function checkNotAuthenticated(req, res, next) {
   };
 
 
-app.listen(PORT, () => {
+var server = app.listen(PORT, () => {
   console.log('Оно живое');
+});
+
+const socket = require('socket.io');
+
+var io = socket(server);
+
+io.on('connection', function(socket) {
+  console.log('connection created ', socket.id);
+
+  socket.on('chat', function(data){
+    io.sockets.emit('chat', data);
+  });
 });

@@ -204,18 +204,24 @@ a {
     position: absolute;
     height: 25px;
     bottom: 12px;
-    right: 15px;
+    right: 20px;
     border-radius: 12px 12px 60px 12px;
     border: none;
     background-color: rgba(103, 255, 255, 0.837);
 }
 
-.comments > textarea{
-    position: absolute;
-    bottom: 12px;
-    border-radius: 10px 10px 10px 22px;
-    height: 50px;
-    resize: none;
+#test-chat{
+    max-width: 600px;
+    margin: 30px auto;
+    border: 1px solid #ddd;
+    box-shadow: 1px 3px 5px rgba(0,0,0,0.05);
+    border-radius: 2px;
+}
+
+#message-container{
+    height: 500px;
+    overflow: auto;
+    background: inherit;
 }
 
 @media (max-width: 1200px) {
@@ -254,7 +260,7 @@ a {
 
     .comments > button{
         border-radius: 5px;
-        right: 3px;
+        right: 5px;
     }
 
     .comments-toggle {
@@ -419,4 +425,9 @@ label{
 .back > a{
     width: 100%;
     height: 100%;
+}
+
+#currentUser {
+  visibility: hidden;
+
 }
