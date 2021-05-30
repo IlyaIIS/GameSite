@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Snake</title>
+  <link rel="stylesheet" href="public/css/style.css">
+  <script src="socket.io/socket.io.js"></script>
+</head>
+<body>
+  <header>
+    <div class="menu">
+      <h1>Snake</h1>
+      <nav>
+        <ul>
+          <li><a href="/">Главная</a></li>
+          <li><a href="#">О нас</a></li>
+          <li><a href="#check1">Регистрация</a></li>
+          <li><a href="#check2">Вход</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <input type="checkbox" id="comments-toggle" hidden>
+
+  <div class="promt">
+    <div class="arrows">
+      <img src="public/img/стрелки клавиатуры.png" alt="Здесь должна быть картинка.">
+    </div>
+    <div class="promt-text">
+      Используйте стрелки клавиатуры для управления змейкой в игре.
+      Вы также можете использовать клавиши W, A, S, D. Также
+      реализованно управление с помощью кнопок мыши. Кстати,
+      здесь может быть ваша реклама!
+    </div>
+  </div>
+
+  <div class="container">
+    <div id='game' oncontextmenu="return false">
+      <canvas width="600" height="600" id='background'></canvas>
+      <canvas width="600" height="600" id='foreground'></canvas>
+      <canvas width="600" height="600" id='particles'></canvas>
+      <canvas width="600" height="600" id='interface'></canvas>
+    </div>
+
+    <div class="comments" id="chat-window">
+      <h3>Чат</h3>
+      <label for="comments-toggle" class="comments-toggle" onclick></label>
+      <div id="message-container">
+        <div id="output"></div>
+      </div>
+      <input type="text" id="message"></input>
+      <button id="send">Отправить</button>
+      <input type="text" value="<%= name ;%>" id="currentUser">
+    </div>
+    <script src="/public/chat.js"></script>
+    </div>
+
+  <style>
+        #game {
+          width: 600px;
+          height: 600px;
+          position: relative;
+          border: 2px solid black;
+        }
+
+        canvas { position: absolute; }
+        #background { z-index: 1; }
+        #foreground { z-index: 2; }
+        #particles  { z-index: 3; }
+        #interface  { z-index: 4; }
+      </style>
+    <script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/public/Classes/Drawer.js"></script>
+    <script src="/public/Classes/Field.js"></script>
+    <script src="/public/Classes/Particle.js"></script>
+    <script src="/public/Classes/Snake.js"></script>
+    <script src="/public/Classes/Apple.js"></script>
+    <script src="/public/Classes/Portal.js"></script>
+    <script src="/public/Classes/MainMenu.js"></script>
+    <script src="/public/Classes/User.js"></script>
+    <script src="/public/Game.js"></script>
+
+  <div class="leaderboard">
+    <input type="text" id="score" value="<%=score;%>">
+    <center><h3>Таблица лидеров</h3></center>
+    <div>
+      <div class="column">
+        <div class="leaderboard-text"><p>1. Test</p></div>
+        <div class="leaderboard-text"><p>2. Test</p></div>
+        <div class="leaderboard-text"><p>3. Test</p></div>
+        <div class="leaderboard-text"><p>4. Test</p></div>
+        <div class="leaderboard-text"><p>5. Test</p></div>
+      </div>
+      <div class="column">
+        <div class="leaderboard-text"><p>6. Test</p></div>
+        <div class="leaderboard-text"><p>7. Test</p></div>
+        <div class="leaderboard-text"><p>8. Test</p></div>
+        <div class="leaderboard-text"><p>9. Test</p></div>
+        <div class="leaderboard-text"><p>10. Test</p></div>
+      </div>
+      <div class="column">
+        <div class="leaderboard-text"><p>11. Test</p></div>
+        <div class="leaderboard-text"><p>12. Test</p></div>
+        <div class="leaderboard-text"><p>13. Test</p></div>
+        <div class="leaderboard-text"><p>14. Test</p></div>
+        <div class="leaderboard-text"><p>15. Test</p></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('hider').onclick = function () {
+      if (document.getElementById('check1').hidden == true) {
+        document.getElementById('check1').hidden = false
+      }
+      else {
+        document.getElementById('check1').hidden = true
+      }
+    }
+  </script>
+
+  <div class="back" id="check1">
+    <a href="#closeWindow"></a>
+    <div class="window">
+      <form action="" method="post">
+        <center>
+          <h2>Регистрация</h2>
+        </center>
+        <div class="group">
+          <label>Имя пользователя:</label>
+          <input type="text" name="regUsername" required>
+        </div>
+        <div class="group">
+          <label>Пароль:</label>
+          <input type="password" name="password1" required>
+        </div>
+        <div class="group">
+          <label>Повторите пароль:</label>
+          <input type="password" name="password2" required>
+        </div>
+        <div class="group">
+          <center><button formaction="/registration">Зарегистрироваться</button></center>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('hider').onclick = function () {
+      if (document.getElementById('check2').hidden == true) {
+        document.getElementById('check2').hidden = false
+      }
+      else {
+        document.getElementById('check2').hidden = true
+      }
+    }
+  </script>
+
+  <div class="back" id="check2">
+    <a href="#closeWindow"></a>
+    <div class="window">
+      <form action="/login" method="post">
+        <center>
+          <h2>Вход</h2>
+          <p>
+            <% if (messages.error) { %>
+            <%= messages.error %>
+            <% } %>
+          </p>
+        </center>
+        <div class="group">
+          <label>Имя пользователя:</label>
+          <input type="text" id="username" name="username" required>
+        </div>
+        <div class="group">
+          <label>Пароль:</label>
+          <input type="password" name="password" id="password" required>
+        </div>
+        <div class="group">
+          <center><button formaction="/login">Войти</button></center>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

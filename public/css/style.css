@@ -1,0 +1,439 @@
+body {
+    background: linear-gradient(180deg, #121683 0%, #07082B 100%);
+    background-image: url("/public/img/фон.png");
+}
+* {
+    box-sizing: border-box;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+header h1 {
+    position: relative;
+    top: -0.1em;
+    left: 12px;
+    float:left;
+    width: 336px;
+    height: 178.78px;
+
+    font-family: Rounded Mplus 1c Bold;
+    font-style: normal;
+    font-weight: bold;
+    font-size: calc(3em + 4vw);
+    line-height: 178px;
+    color: #E7E7E7;
+}
+
+header ul {
+    list-style: none; /*убираем маркеры списка*/
+    margin: 0; /*убираем верхнее и нижнее поле, равное 1em*/
+    padding-left: 0; /*убираем левый отступ, равный 40px*/
+    height: 230px;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+    border-radius: 0 0 49px 49px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    height: 180px;
+    background: rgba(238, 238, 238, 0.01);
+    box-shadow: inset 0px 39px 56px -36px rgba(255, 255, 255, 0.5), inset 0px 7px 11px -4px #FFFFFF, inset 0px -82px 68px -64px rgba(96, 68, 144, 0.3), inset 0px 98px 100px -48px rgba(202, 172, 255, 0.3), inset 0px 4px 18px rgba(154, 146, 210, 0.3), inset 0px 1px 0px rgba(227, 222, 255, 0.2);
+    backdrop-filter: blur(100px);
+  }
+
+
+nav ul{
+    list-style: none;
+    position: relative;
+    float: right;
+    display: inline-table;
+  }
+nav ul li{
+  float: left;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+nav ul li:hover{
+    background: rgba(0,0,0,.15);
+    border-radius: 10px;
+}
+nav ul li:hover > ul{display: block;}
+nav ul li{
+  float: left;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+nav ul li a{
+    display: block;
+    padding: 10px 20px;
+    color: #E7E7E7;
+    font-size: 1em;
+    letter-spacing: 1px;
+    text-decoration: none;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none; /*убираем подчеркивание текста ссылок*/
+}
+
+.container{
+    display: flex;
+    justify-content:space-between;
+    margin: 20px 8% 20px 8%;
+}
+
+.promt{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #200549;
+    box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.42);
+    border-radius: 4px;
+
+    position: static;
+    max-width: 600px;
+    margin: 20px 20px 0 8%;
+}
+
+.arrows{
+    margin-left: 10px;
+}
+
+.promt-text{
+    margin-left: 25px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #E7E7E7;
+}
+
+.leaderboard{
+    align-items: center;
+    background: #200549;
+    box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.42);
+    border-radius: 4px;
+
+    position: static;
+    width: 600px;
+    margin:0 0 10px 8%;
+}
+
+.leaderboard > div{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
+.leaderboard > div > .column{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.leaderboard  > center > h3, p{
+    font-family: Rounded Mplus 1c Bold;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 52px;
+    color: #0FF333;
+}
+
+.comments{
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+    padding: 10px;
+    border-radius: 49px;
+    top: 210px;
+    right: 40px;
+    background: inherit;
+    height: 600px;
+    width: 350px;
+    background: rgba(238, 238, 238, 0.01);
+    box-shadow: inset 0px 39px 56px -36px rgba(255, 255, 255, 0.5), inset 0px 7px 11px -4px #FFFFFF,
+                inset 0px -82px 68px -64px rgba(96, 68, 144, 0.3), inset 0px 98px 100px -48px rgba(202, 172, 255, 0.3),
+                inset 0px 4px 18px rgba(154, 146, 210, 0.3), inset 0px 1px 0px rgba(227, 222, 255, 0.2);
+    backdrop-filter: blur(100px);
+}
+
+.comments > h3{
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.comments > div > div {
+    margin-bottom: 35px;
+}
+
+/* .comments > div > div > p{
+    line-height: 15px;
+    margin-bottom: -15px;
+} */
+
+.comments > div {
+    height: 500px;
+    overflow: auto;
+}
+
+.text {
+    color: white;
+}
+
+.comments > button{
+    position: absolute;
+    height: 25px;
+    bottom: 12px;
+    right: 20px;
+    border-radius: 12px 12px 60px 12px;
+    border: none;
+    background-color: rgba(103, 255, 255, 0.837);
+}
+
+/*
+chat styles
+*/
+
+#message-container{
+    height: 500px;
+    overflow: auto;
+    background: inherit;
+}
+
+#output p{
+    padding: 14px 0px;
+    margin-bottom: -55px;
+}
+
+@media (max-width: 1200px) {
+    .promt, .container, .leaderboard{margin-left: 1%;}
+    .container{margin-right: 1%;}
+}
+
+
+@media (max-width: 1000px) {
+    .container{
+        justify-content: flex-start;
+    }
+
+    .comments {
+        top: 25%;
+        width: 320px;
+        height:500px;
+        min-width: 320px;
+        position: fixed;
+        right: -320px;
+        /* плавный переход смещения панели */
+        -webkit-transition: right 0.3s;
+        -moz-transition: right 0.3s;
+        transition: right 0.3s;
+        z-index: 2000;
+        border-radius: 30px 0 0 30px;
+    }
+
+    .comments > div{
+        height: 280px;
+    }
+
+    .comments > textarea{
+        width: 220px;
+    }
+
+    .comments > button{
+        border-radius: 5px;
+        right: 5px;
+    }
+
+    .comments-toggle {
+        /* абсолютно позиционируем */
+        position: absolute;
+        height: 65px;
+        width: 25px;
+        border-radius: 2px;
+        right: 330px;
+        color: #dadada;
+        /* вид курсора */
+        cursor: pointer;
+        font-size: 1.2em;
+        z-index: 2001;
+        /* анимируем цвет текста при наведении */
+        -webkit-transition: color .25s ease-in-out;
+        -moz-transition: color .25s ease-in-out;
+        transition: color .25s ease-in-out;
+        text-align: center; word-wrap: break-word;
+        padding-right: 10px;
+        background: rgba(238, 238, 238, 0.01);
+        box-shadow: inset 0px 39px 56px -36px rgba(255, 255, 255, 0.5), inset 0px 7px 11px -4px #FFFFFF,
+         inset 0px -82px 68px -64px rgba(96, 68, 144, 0.3), inset 0px 98px 100px -48px rgba(202, 172, 255, 0.3),
+          inset 0px 4px 18px rgba(154, 146, 210, 0.3), inset 0px 1px 0px rgba(227, 222, 255, 0.2);
+        backdrop-filter: blur(100px);
+    }
+
+
+    /* текст кнопки */
+
+    .comments-toggle:after {
+        content: 'Чат';
+        text-decoration: none;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+    }
+
+
+
+    /**
+     * Скрытый чекбокс (флажок)
+     * имя селектора атрибут флажка
+     */
+
+    [id='comments-toggle'] {
+        position: absolute;
+        display: none;
+    }
+
+
+
+    [id='comments-toggle']:checked ~ .container > .comments > .comments-toggle {
+        left: auto;
+        right: 2px;
+        top: 1em;
+        box-shadow: none;
+        backdrop-filter:unset;
+    }
+
+
+    /**
+     * Когда флажок установлен, открывается панель
+     *псевдокласс:checked
+     */
+
+    [id='comments-toggle']:checked ~ .container > .comments {
+        right: 0;
+        box-shadow:-4px 0px 20px 0px rgba(0,0,0, 0.5);
+        -moz-box-shadow:-4px 0px 20px 0px rgba(0,0,0, 0.5);
+        -webkit-box-shadow:-4px 0px 20px 0px rgba(0,0,0, 0.5);
+        overflow-y: auto;
+    }
+
+    /*
+     * изменение символа переключателя,
+     * крестик
+    */
+
+    [id='comments-toggle']:checked ~ .container > .comments > .comments-toggle:after {
+        content: '\2715';
+    }
+}
+
+.back{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position:fixed;
+    top: 0;
+    margin: 0 auto;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+
+    z-index: 3000;
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+}
+
+.window{
+    position:fixed;
+    margin: auto;
+    padding: 10px;
+    width: 450px;
+
+
+    z-index: 3001;
+    border-radius: 12px;
+    background: rgba(238, 238, 238, 0.01);
+    box-shadow: inset 0px 39px 56px -36px rgba(255, 255, 255, 0.5), inset 0px 7px 11px -4px #FFFFFF, inset 0px -82px 68px -64px rgba(96, 68, 144, 0.3), inset 0px 98px 100px -48px rgba(202, 172, 255, 0.3), inset 0px 4px 18px rgba(154, 146, 210, 0.3), inset 0px 1px 0px rgba(227, 222, 255, 0.2);
+    backdrop-filter: blur(100px);
+}
+
+ .window > form > center > h2{
+    color: lightgreen;
+    font-size: 18px;
+    text-transform: uppercase;
+
+}
+
+.group{
+    padding: 12px;
+}
+
+label{
+    padding-left: 10px;
+    text-transform: uppercase;
+    color: lightgreen;
+}
+
+.group > input{
+    height: 40px;
+    width: 400px;
+    border-radius: 20px;
+    margin-top: 10px;
+    border: none;
+    padding-left: 15px;
+    font-size: 18px;
+    box-shadow: 3px 2px 5px rgba(255, 255, 255, 0.5);
+}
+
+.group > center > button{
+    border: none;
+    margin-top: 5px;
+    color: lightgreen;
+    text-transform: uppercase;
+    font-size: 15px;
+    height: 30px;
+    border-radius: 5px;
+    background-color:lightslategray;
+}
+
+#check1:target{
+    display:flex;
+}
+
+#check2:target{
+    display:flex;
+}
+
+.back > a{
+    width: 100%;
+    height: 100%;
+}
+
+#currentUser {
+  visibility: hidden;
+
+}
+
+
+#scoreMessage {
+  color: rgba(0, 255, 0, 1)
+}
