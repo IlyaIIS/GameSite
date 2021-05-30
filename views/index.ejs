@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="public/css/style.css">
   <script src="socket.io/socket.io.js"></script>
 </head>
+
 <body>
   <header>
     <div class="menu">
@@ -30,7 +31,7 @@
     </div>
     <div class="promt-text">
       Используйте стрелки клавиатуры для управления змейкой в игре.
-      Вы также можете использовать клавиши W, A, S, D. Также
+      Вы также можете использовать клавиши A, D. Также
       реализованно управление с помощью кнопок мыши. Кстати,
       здесь может быть ваша реклама!
     </div>
@@ -55,57 +56,103 @@
       <input type="text" value="<%= name ;%>" id="currentUser">
     </div>
     <script src="/public/chat.js"></script>
-    </div>
+  </div>
 
   <style>
-        #game {
-          width: 600px;
-          height: 600px;
-          position: relative;
-          border: 2px solid black;
-        }
+    #game {
+      width: 600px;
+      height: 600px;
+      position: relative;
+      border: 2px solid black;
+    }
 
-        canvas { position: absolute; }
-        #background { z-index: 1; }
-        #foreground { z-index: 2; }
-        #particles  { z-index: 3; }
-        #interface  { z-index: 4; }
-      </style>
-    <script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
-    <script src="/public/Classes/Drawer.js"></script>
-    <script src="/public/Classes/Field.js"></script>
-    <script src="/public/Classes/Particle.js"></script>
-    <script src="/public/Classes/Snake.js"></script>
-    <script src="/public/Classes/Apple.js"></script>
-    <script src="/public/Classes/Portal.js"></script>
-    <script src="/public/Classes/MainMenu.js"></script>
-    <script src="/public/Classes/User.js"></script>
-    <script src="/public/Game.js"></script>
+    canvas {
+      position: absolute;
+    }
+
+    #background {
+      z-index: 1;
+    }
+
+    #foreground {
+      z-index: 2;
+    }
+
+    #particles {
+      z-index: 3;
+    }
+
+    #interface {
+      z-index: 4;
+    }
+  </style>
+  <script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
+  <script src="/public/Classes/Drawer.js"></script>
+  <script src="/public/Classes/Field.js"></script>
+  <script src="/public/Classes/Particle.js"></script>
+  <script src="/public/Classes/Snake.js"></script>
+  <script src="/public/Classes/Apple.js"></script>
+  <script src="/public/Classes/Portal.js"></script>
+  <script src="/public/Classes/MainMenu.js"></script>
+  <script src="/public/Classes/User.js"></script>
+  <script src="/public/Game.js"></script>
 
   <div class="leaderboard">
-    <input type="text" id="score" value="<%=score;%>">
-    <center><h3>Таблица лидеров</h3></center>
+    <input type="text" id="score" value="<%=score;%>" readonly>
+    <center>
+      <h3>Таблица лидеров</h3>
+    </center>
     <div>
       <div class="column">
-        <div class="leaderboard-text"><p>1. Test</p></div>
-        <div class="leaderboard-text"><p>2. Test</p></div>
-        <div class="leaderboard-text"><p>3. Test</p></div>
-        <div class="leaderboard-text"><p>4. Test</p></div>
-        <div class="leaderboard-text"><p>5. Test</p></div>
+        <div class="leaderboard-text">
+          <p>1. Test</p>
+        </div>
+        <div class="leaderboard-text">
+          <p>2. Test</p>
+        </div>
+        <div class="leaderboard-text">
+          <p>3. Test</p>
+        </div>
+        <div class="leaderboard-text">
+          <p>4. Test</p>
+        </div>
+        <div class="leaderboard-text">
+          <p>5. Test</p>
+        </div>
       </div>
       <div class="column">
-        <div class="leaderboard-text"><p>6. Test</p></div>
-        <div class="leaderboard-text"><p>7. Test</p></div>
-        <div class="leaderboard-text"><p>8. Test</p></div>
-        <div class="leaderboard-text"><p>9. Test</p></div>
-        <div class="leaderboard-text"><p>10. Test</p></div>
+        <div class="leaderboard-text">
+          <p>6. Test</p>
+        </div>
+        <div class="leaderboard-text">
+          <p>7. Test</p>
+        </div>
+        <div class="leaderboard-text">
+          <p>8. Test</p>
+        </div>
+        <div class="leaderboard-text">
+          <p>9. Test</p>
+        </div>
+        <div class="leaderboard-text">
+          <p>10. Test</p>
+        </div>
       </div>
       <div class="column">
-        <div class="leaderboard-text"><p>11. Test</p></div>
-        <div class="leaderboard-text"><p>12. Test</p></div>
-        <div class="leaderboard-text"><p>13. Test</p></div>
-        <div class="leaderboard-text"><p>14. Test</p></div>
-        <div class="leaderboard-text"><p>15. Test</p></div>
+        <div class="leaderboard-text">
+          <p>11. Test</p>
+        </div>
+        <div class="leaderboard-text">
+          <p>12. Test</p>
+        </div>
+        <div class="leaderboard-text">
+          <p>13. Test</p>
+        </div>
+        <div class="leaderboard-text">
+          <p>14. Test</p>
+        </div>
+        <div class="leaderboard-text">
+          <p>15. Test</p>
+        </div>
       </div>
     </div>
   </div>
@@ -166,8 +213,8 @@
           <h2>Вход</h2>
           <p>
             <% if (messages.error) { %>
-            <%= messages.error %>
-            <% } %>
+              <%= messages.error %>
+                <% } %>
           </p>
         </center>
         <div class="group">

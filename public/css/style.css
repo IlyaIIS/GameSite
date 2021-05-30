@@ -177,6 +177,31 @@ a {
     backdrop-filter: blur(100px);
 }
 
+.comments > input {
+    position: absolute;
+    bottom: 12px;
+    border-radius: 10px 10px 10px 22px;
+    height: 50px;
+    width: 230px;
+    resize: none;
+    outline: none;
+}
+
+.comments > input:focus {
+    outline-width: 0;
+}
+
+.leaderboard > input{
+    border: none;
+    background: #200549;
+    color: #FFFFFF;
+    font-size: 20px;
+}
+
+.leaderboard > input:focus {
+    outline-width: 0;
+}
+
 .comments > h3{
     text-align: center;
     margin-bottom: 12px;
