@@ -26,8 +26,18 @@ function GetUserByName(username) {
 function GetUserById(id) {
   sqlite.connect('users.sqlite3');
   try {
-    var result = sqlite.run("SELECT * FROM users WHERE Id = " + id);
+    var result = sqlite.run("SELECT * FROM users WHERE id = " + id);
     return result[0];
+  } catch (err) {
+    return err
+  }
+};
+
+function GetScoreByName(username) {
+  sqlite.connect('users.sqlite3');
+  try {
+    var result = sqlite.run("SELECT * FROM users WHERE username = " + `'${username}'`);
+    return result[0].score;
   } catch (err) {
     return err
   }
@@ -41,7 +51,7 @@ initializePassport(
 
 var db = new sqlite3.Database('users.sqlite3');
 
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+var urlencodedParser = bodyParser.urlencoded({ extended: true });
 app.use(urlencodedParser);
 
 app.set('view engine', 'ejs');
@@ -61,13 +71,26 @@ app.use(methodOverride('_method'));
 
 app.get('/', function(req,res) {
   if(req.isAuthenticated()) {
-    res.render('index', { name: req.user.username});
+    res.render('index', { name: req.user.username, score: GetScoreByName(req.user.username)});
   } else {
-    res.render('index', { name: 'гость'});
+    res.render('index', { name: 'гость', score: 0});
   };
 });
 
+const jsonParser = express.json();
 
+app.post('/score', jsonParser, function(req,res) {
+  if( req.isAuthenticated() ) {
+    let score = req.body.score;
+    sqlite.connect('users.sqlite3');
+    var result = sqlite.run("SELECT * FROM users WHERE username = " + `'${req.user.username}'`);
+    if(result[0].score < score) {
+      sqlite.run(`UPDATE users SET score = ${score} WHERE username = ` + `'${req.user.username}'`);
+    };
+
+  };
+
+});
 
 
 app.post('/registration', urlencodedParser,async function(req, res) {
@@ -116,7 +139,6 @@ const socket = require('socket.io');
 var io = socket(server);
 
 io.on('connection', function(socket) {
-  console.log('connection created ', socket.id);
 
   socket.on('chat', function(data){
     io.sockets.emit('chat', data);

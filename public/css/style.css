@@ -186,10 +186,10 @@ a {
     margin-bottom: 35px;
 }
 
-.comments > div > div > p{
+/* .comments > div > div > p{
     line-height: 15px;
     margin-bottom: -15px;
-}
+} */
 
 .comments > div {
     height: 500px;
@@ -210,18 +210,19 @@ a {
     background-color: rgba(103, 255, 255, 0.837);
 }
 
-#test-chat{
-    max-width: 600px;
-    margin: 30px auto;
-    border: 1px solid #ddd;
-    box-shadow: 1px 3px 5px rgba(0,0,0,0.05);
-    border-radius: 2px;
-}
+/*
+chat styles
+*/
 
 #message-container{
     height: 500px;
     overflow: auto;
     background: inherit;
+}
+
+#output p{
+    padding: 14px 0px;
+    margin-bottom: -55px;
 }
 
 @media (max-width: 1200px) {
@@ -430,4 +431,9 @@ label{
 #currentUser {
   visibility: hidden;
 
+}
+
+
+#scoreMessage {
+  color: rgba(0, 255, 0, 1)
 }

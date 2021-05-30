@@ -14,7 +14,6 @@
       <nav>
         <ul>
           <li><a href="/">Главная</a></li>
-          <li><a href="#">Профиль</a></li>
           <li><a href="#">О нас</a></li>
           <li><a href="#check1">Регистрация</a></li>
           <li><a href="#check2">Вход</a></li>
@@ -33,7 +32,7 @@
       Используйте стрелки клавиатуры для управления змейкой в игре.
       Вы также можете использовать клавиши W, A, S, D. Также
       реализованно управление с помощью кнопок мыши. Кстати,
-      здесь может быть ваша реклама!!!
+      здесь может быть ваша реклама!
     </div>
   </div>
 
@@ -45,7 +44,7 @@
       <canvas width="600" height="600" id='interface'></canvas>
     </div>
 
-    <div class="comments">
+    <div class="comments" id="chat-window">
       <h3>Чат</h3>
       <label for="comments-toggle" class="comments-toggle" onclick></label>
       <div id="message-container">
@@ -84,6 +83,7 @@
     <script src="/public/Game.js"></script>
 
   <div class="leaderboard">
+    <input type="text" id="score" value="<%=score;%>">
     <center><h3>Таблица лидеров</h3></center>
     <div>
       <div class="column">

@@ -71,7 +71,23 @@ function gameEndActions() {
     drawer.showPopWindow("ВАШ СЧЁТ: " + user.score.toString(), goBackToMainMenu);
     clearInterval(timer);
     //отправка результатов на сервер
+
+    let temp = document.getElementById('score');
+    temp.value = user.score;
+
+    Url = `http://localhost:3000/score`;
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', Url);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    let test = JSON.stringify({
+      score: user.score
+    });
+
+    xhr.send(test);
+
+
 }
+
 function goBackToMainMenu() {
     gameWindow = 0;
     drawer.buttons = [];
