@@ -10,13 +10,15 @@ var output = document.getElementById('output');
 // emit events
 
 btn.addEventListener('click',function(){
-  if (handle.value != 'гость'){
-    socket.emit('chat',{
-      message: message.value,
-      handle: handle.value
-    });
+  if (handle.value != 'гость') {
+    if (message.value != '') {
+      socket.emit('chat',{
+        message: message.value,
+        handle: handle.value
+      });
 
-    message.value = '';
+      message.value = '';
+    }
   } else {
     alert('Авторизуйтесь, чтобы пользоваться чатом');
   }
