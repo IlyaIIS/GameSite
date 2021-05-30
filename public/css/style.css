@@ -161,6 +161,26 @@ a {
     color: #0FF333;
 }
 
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+    border:none;
+    background-color: rgb(149, 255, 144);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: rgb(0, 255, 145);
+}
+
+::-webkit-scrollbar-track:hover{
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(211, 255, 245);
+}
+
 .comments{
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
     padding: 10px;
@@ -194,7 +214,7 @@ a {
 .leaderboard > input{
     border: none;
     background: #200549;
-    color: #FFFFFF;
+    color: #0FF333;
     font-size: 20px;
 }
 
@@ -205,6 +225,12 @@ a {
 .comments > h3{
     text-align: center;
     margin-bottom: 12px;
+    
+    font-family: Rounded Mplus 1c Bold;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    color: #E7E7E7;
 }
 
 .comments > div > div {
@@ -217,7 +243,7 @@ a {
 } */
 
 .comments > div {
-    height: 500px;
+    height: 450px;
     overflow: auto;
 }
 
@@ -232,7 +258,7 @@ a {
     right: 20px;
     border-radius: 12px 12px 60px 12px;
     border: none;
-    background-color: rgba(103, 255, 255, 0.837);
+    background-color: rgb(149, 255, 144);
 }
 
 /*
@@ -277,7 +303,8 @@ chat styles
     }
 
     .comments > div{
-        height: 280px;
+        max-height: 380px;
+        overflow: scroll;
     }
 
     .comments > textarea{
@@ -312,6 +339,10 @@ chat styles
          inset 0px -82px 68px -64px rgba(96, 68, 144, 0.3), inset 0px 98px 100px -48px rgba(202, 172, 255, 0.3),
           inset 0px 4px 18px rgba(154, 146, 210, 0.3), inset 0px 1px 0px rgba(227, 222, 255, 0.2);
         backdrop-filter: blur(100px);
+    }
+
+    .comments > input {
+        width: 200px;
     }
 
 
