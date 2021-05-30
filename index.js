@@ -70,10 +70,40 @@ app.use(passport.session());
 app.use(methodOverride('_method'));
 
 app.get('/', function(req,res) {
+
+  sqlite.connect('users.sqlite3');
+  var result = sqlite.run("SELECT * FROM users ORDER BY score DESC LIMIT 10");
+
   if(req.isAuthenticated()) {
-    res.render('index', { name: req.user.username, score: GetScoreByName(req.user.username)});
+    res.render('index', {
+      name: req.user.username,
+      score: GetScoreByName(req.user.username),
+      top1: result[0].username + ' - ' + result[0].score,
+      top2: result[1].username + ' - ' + result[1].score,
+      top3: result[2].username + ' - ' + result[2].score,
+      top4: result[3].username + ' - ' + result[3].score,
+      top5: result[4].username + ' - ' + result[4].score,
+      top6: result[5].username + ' - ' + result[5].score,
+      top7: result[6].username + ' - ' + result[6].score,
+      top8: result[7].username + ' - ' + result[7].score,
+      top9: result[8].username + ' - ' + result[8].score,
+      top10: result[9].username + ' - ' + result[9].score
+    });
   } else {
-    res.render('index', { name: 'гость', score: 0});
+    res.render('index', {
+       name: 'гость',
+       score: 0,
+       top1: result[0].username + ' - ' + result[0].score,
+       top2: result[1].username + ' - ' + result[1].score,
+       top3: result[2].username + ' - ' + result[2].score,
+       top4: result[3].username + ' - ' + result[3].score,
+       top5: result[4].username + ' - ' + result[4].score,
+       top6: result[5].username + ' - ' + result[5].score,
+       top7: result[6].username + ' - ' + result[6].score,
+       top8: result[7].username + ' - ' + result[7].score,
+       top9: result[8].username + ' - ' + result[8].score,
+       top10: result[9].username + ' - ' + result[9].score
+     });
   };
 });
 
@@ -97,16 +127,15 @@ app.post('/registration', urlencodedParser,async function(req, res) {
   if(!req.body) return res.sendStatus(400);
 
   try {
-
     const hashedPassword = await bcrypt.hash(req.body.password1, 10);
     var stmt = db.prepare("INSERT INTO users (username, password, score) VALUES(?,?,?)");
     stmt.run(req.body.regUsername, hashedPassword, 0);
-
   } catch {
 
   };
-  res.redirect('/');
 
+
+  res.redirect('/');
 });
 
 app.post('/login', passport.authenticate('local', {
