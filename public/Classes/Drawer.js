@@ -56,7 +56,10 @@ var Drawer = function() {
     }
     
     drawer.showPopWindow = (string, action) => {
-        drawer.popWindows.push(new Button(drawer.ui, string, w/4, h/4, "rgba(0,255,0,1)", true, 20, 50, () => {action(); drawer.popWindows.pop()}));
+        drawer.popWindows.push(new Button(drawer.ui, string, w/4, h/4, "rgba(0,255,0,1)", true, 20, 50, () => {
+            action(); 
+            drawer.popWindows.pop()
+        }));
         drawer.popWindows[0].draw();
     }
 

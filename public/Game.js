@@ -135,9 +135,9 @@ $('body').mouseup(function(e){
 
     if (gameWindow == 1) {
         if (drawer.popWindows.length > 0) {
-            drawer.popWindows.forEach(window => {
-                if (window.isCollision(e.pageX - rect.left, e.pageY - rect.top))
-                    window.click();
+            drawer.popWindows.forEach(popWindow => {
+                if (popWindow.isCollision(e.pageX - rect.left - window.scrollX, e.pageY - rect.top - window.scrollY))
+                    popWindow.click();
             })
         }
         else {
